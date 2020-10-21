@@ -75,14 +75,17 @@ function getFieldName(input) {
 }
 
 // Check success for all fields
-function checkSuccess(inputArr) {
-  inputArr.forEach(function (input) {
-    if (input.parentElement.classList.contains("error")) {
-      console.log("error");
-    } else {
-      window.location.href = "success.html";
-    }
-  });
+function checkSuccess(input1, input2, input3, input4) {
+  if (
+    input1.parentElement.classList.contains("error") ||
+    input2.parentElement.classList.contains("error") ||
+    input3.parentElement.classList.contains("error") ||
+    input4.parentElement.classList.contains("error")
+  ) {
+    console.log("error");
+  } else {
+    window.location.href = "success.html";
+  }
 }
 
 // Event listeners
@@ -94,5 +97,5 @@ form.addEventListener("submit", function (e) {
   checkLength(password, 6, 20);
   checkEmail(email);
   checkPasswrdsMatch(password, password2);
-  checkSuccess([username, email, password, password2]);
+  checkSuccess(username, email, password, password2);
 });
