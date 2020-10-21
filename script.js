@@ -51,7 +51,7 @@ function checkLength(input, min, max) {
   } else if (input.value.length > max) {
     showError(
       input,
-      `${getFieldName(input)} must be less than ${max} characters`
+      `${getFieldName(input)} must be ${max} characters or less`
     );
   } else {
     showSuccess(input);
@@ -67,7 +67,22 @@ function checkPasswrdsMatch(input1, input2) {
 
 // Get fieldname
 function getFieldName(input) {
-  return input.id.charAt(0).toUpperCase() + input.id.slice(1);
+  if (input === username) {
+    return input.id.charAt(0).toUpperCase() + input.id.slice(1);
+  } else {
+    return input.type.charAt(0).toUpperCase() + input.type.slice(1);
+  }
+}
+
+// Check success for all fields
+function checkSuccess(inputArr) {
+  inputArr.forEach(function (input) {
+    if (input.parentElement.classList.contains("error")) {
+      console.log("error");
+    } else {
+      window.location.href = "success.html";
+    }
+  });
 }
 
 // Event listeners
@@ -79,4 +94,5 @@ form.addEventListener("submit", function (e) {
   checkLength(password, 6, 20);
   checkEmail(email);
   checkPasswrdsMatch(password, password2);
+  checkSuccess([username, email, password, password2]);
 });
