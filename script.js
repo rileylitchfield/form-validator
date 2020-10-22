@@ -59,9 +59,17 @@ function checkLength(input, min, max) {
 }
 
 // Check password
-function checkPasswrdsMatch(input1, input2) {
+function checkPasswordsMatch(input1, input2) {
   if (input1.value !== input2.value) {
     showError(input2, "Passwords do not match");
+  }
+}
+
+// If one password has an error, apply 'error' class to both passwords
+function passwordError() {
+  if (password.parentElement.classList.contains("error")) {
+    password2.parentElement.className = "form-control error";
+    password2.value = "";
   }
 }
 
@@ -96,6 +104,7 @@ form.addEventListener("submit", function (e) {
   checkLength(username, 3, 15);
   checkLength(password, 6, 20);
   checkEmail(email);
-  checkPasswrdsMatch(password, password2);
+  checkPasswordsMatch(password, password2);
   checkSuccess(username, email, password, password2);
+  passwordError();
 });
