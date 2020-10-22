@@ -6,6 +6,12 @@ const password2 = document.getElementById("password2");
 
 // Functions
 
+function clearSmall(input) {
+  const formControl = input.parentElement;
+  const small = formControl.querySelector("small");
+  small.innerText = "";
+}
+
 // Show input error message
 function showError(input, message) {
   const formControl = input.parentElement;
@@ -70,6 +76,7 @@ function passwordError() {
   if (password.parentElement.classList.contains("error")) {
     password2.parentElement.className = "form-control error";
     password2.value = "";
+    clearSmall(password2);
   }
 }
 
